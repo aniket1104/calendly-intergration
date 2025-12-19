@@ -38,7 +38,6 @@ export class WorkflowEngine {
   }
 
   private async handleReason(session: UserSession, message: string): Promise<string> {
-    // Simple keyword matching for demo
     const lower = message.toLowerCase();
     const eventTypes = await calendlyService.getEventTypes();
     
@@ -51,7 +50,6 @@ export class WorkflowEngine {
     } else if (lower.includes('specialist')) {
       selectedType = eventTypes.find(e => e.slug.includes('specialist'));
     } else {
-      // Default to general if ambiguous or explicitly requested
       selectedType = eventTypes.find(e => e.slug.includes('general'));
     }
 
@@ -92,7 +90,6 @@ export class WorkflowEngine {
       });
     }
 
-    // Take top 3
     const suggestions = filteredSlots.slice(0, 3);
     
     if (suggestions.length === 0) {

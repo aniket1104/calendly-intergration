@@ -16,11 +16,6 @@ export const TimeUtils = {
     if (lower.includes('today')) return today;
     if (lower.includes('tomorrow')) return addDays(today, 1);
     
-    // Try parsing specific dates like "next Monday" or "2023-10-25"
-    // For simplicity, we'll stick to basic keywords and simple formats
-    // In a real NLP system, we'd use chrono-node or similar.
-    
-    // Simple check for YYYY-MM-DD
     const isoDate = parse(input, 'yyyy-MM-dd', new Date());
     if (isValid(isoDate)) return isoDate;
 

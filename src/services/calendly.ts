@@ -163,19 +163,7 @@ export class CalendlyService {
       };
     }
 
-    // Real booking usually requires the user to visit the link. 
-    // Calendly API v2 allows creating single-use links, but DIRECT booking via API 
-    // (posting a booking) is generally NOT supported for standard OAuth users 
-    // (it's usually for enterprise or embedding).
-    // The prompt says "All appointments must be created through Calendly".
-    // Usually this means generating a link. 
-    // BUT the prompt also says "Create appointment via Calendly" in Phase 3.
-    // If the API doesn't support direct creation, we might have to generate a pre-filled link.
-    // However, for this "Agent" persona, we'll assume we might have enterprise access OR 
-    // we just simulate the "Success" after the user says "Yes".
-    // We will return a "Link" in the real world scenario if direct booking isn't possible.
-    
-    // For now, let's assume we generate a Single-Use Scheduling Link.
+    // Generate a Single-Use Scheduling Link.
     const user = await this.getCurrentUser();
     const response = await axios.post(`${this.apiBase}/scheduling_links`, {
       max_event_count: 1,
